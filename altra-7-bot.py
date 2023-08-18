@@ -67,7 +67,7 @@ while True:
         speak('Hello come in please.') 
 
 
-     elif class_name == 'elephant':
+     elif class_name == 'person':
         speak('Warning Elephant has entered the town')
         playsound.playsound('C:/Users/nithu/Desktop/school-project/my-projects/elephant-detection/dog-audios/audios-1/10.mp3')
 
