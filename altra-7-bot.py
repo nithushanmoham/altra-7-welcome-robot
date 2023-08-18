@@ -1,10 +1,7 @@
 import cv2
 import pyttsx3
 import wolframalpha
-import playsound
-import gtts as gt 
 import os
-from gtts import gTTS
 
 engine = pyttsx3.init()
 
@@ -23,13 +20,13 @@ def speak(audio):
     
 #Opencv DNN
 
-jet = net = cv2.dnn.readNet("C:/Users/nithu/Desktop/school-project/my-projects/elephant-detection/dnn_model/yolov4-tiny.weights", "C:/Users/nithu/Desktop/school-project/my-projects/elephant-detection/dnn_model/yolov4-tiny.cfg")
+jet = net = cv2.dnn.readNet("C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/dnn_mode/yolov4-tiny.weights", "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/dnn_mode/yolov4-tiny.cfg")
 model = cv2.dnn_DetectionModel(net)
 model.setInputParams(size=(220,220),  scale=1/255)
 
 #Load class  List
 classes= []
-with open("C:/Users/nithu/Desktop/school-project/my-projects/elephant-detection/dnn_model/classes.txt", "r") as file_object:
+with open("C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/dnn_mode/classes.txt", "r") as file_object:
     for class_name in file_object.readlines():
         class_name = class_name.strip()
         classes.append(class_name)
@@ -62,15 +59,9 @@ while True:
 
      cv2.putText(frame, class_name, (x, y - 10),cv2.FONT_HERSHEY_PLAIN, 3, (200,0, 50 ), 2)
      cv2.rectangle(frame, (x,y), (x+ w, y + h), (200,0, 50 ), 3)
-       
+     
      if class_name == 'person':
-        speak('Hello come in please.') 
-
-
-     elif class_name == 'person':
         speak('Warning Elephant has entered the town')
-        playsound.playsound('C:/Users/nithu/Desktop/school-project/my-projects/elephant-detection/dog-audios/audios-1/10.mp3')
-
 
      cv2.waitKey(32)
      cv2.imshow("frame",frame) 
