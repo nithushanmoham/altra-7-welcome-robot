@@ -32,8 +32,12 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
+# Create the "detected_objects" folder if it doesn't exist
+if not os.path.exists("detected_objects"):
+    os.makedirs("detected_objects")
+
 while True:
-    ret, frame = cap.read()
+    ret, frame = cap.read(1)
 
     # Object Detection
     (class_ids, scores, bboxes) = model.detect(frame)
@@ -46,14 +50,21 @@ while True:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (200, 0, 50), 3)
         
         if class_name == 'person':
-            speak('please welcome')
-            file_path = "datas"
-            image_filename = f"detected_person_{str(datetime.datetime.now())}.jpg"
-            image_path = os.path.join(file_path, image_filename)
-            cv2.imwrite(image_path, frame)
-            print(f"Image saved as {image_path}")
+            speak('We warmly welcome you')
 
-    cv2.imshow("frame", frame)
+        if class_name == 'dog':
+            speak('your are not alow')
+            
+            # Save image of detected object
+            object_img = frame[y:y+h, x:x+w]
+            label = class_name.lower()  # Convert class name to lowercase for filename
+            now = datetime.datetime.now()
+            object_filename = f"{label}_{now.strftime('%Y-%m-%d_%H-%M-%S')}.jpg"
+            cv2.imwrite(os.path.join("detected_objects", object_filename), object_img)
+            
+            print(f"Image saved as {object_filename}")
+
+    cv2.imshow("Object Detection", frame)
     
     # Press 'q' to exit the loop
     if cv2.waitKey(1) & 0xFF == ord('q'):
