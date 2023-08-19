@@ -2,10 +2,10 @@ import cv2
 import pyttsx3
 import wolframalpha
 import os
+import datetime
 
 engine = pyttsx3.init()
 
-engine = pyttsx3.init()
 engine.runAndWait()
 
 '''len(voices)-1'''
@@ -20,13 +20,13 @@ def speak(audio):
     
 #Opencv DNN
 
-jet = net = cv2.dnn.readNet("C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/dnn_mode/yolov4-tiny.weights", "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/dnn_mode/yolov4-tiny.cfg")
+jet = net = cv2.dnn.readNet("yolov4-tiny.weights", "yolov4-tiny.cfg")
 model = cv2.dnn_DetectionModel(net)
 model.setInputParams(size=(220,220),  scale=1/255)
 
 #Load class  List
 classes= []
-with open("C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/dnn_mode/classes.txt", "r") as file_object:
+with open("classes.txt", "r") as file_object:
     for class_name in file_object.readlines():
         class_name = class_name.strip()
         classes.append(class_name)
@@ -35,7 +35,7 @@ print("Objects list")
 print(classes)
 
 #Instialize camera
-cap=cv2. VideoCapture(1)
+cap=cv2. VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 #FULL HD 1920 X 1080
@@ -60,8 +60,16 @@ while True:
      cv2.putText(frame, class_name, (x, y - 10),cv2.FONT_HERSHEY_PLAIN, 3, (200,0, 50 ), 2)
      cv2.rectangle(frame, (x,y), (x+ w, y + h), (200,0, 50 ), 3)
      
+     
      if class_name == 'person':
-        speak('Warning Elephant has entered the town')
+        speak('please welcome')
+        
+        cv2.imwrite('detected_person.jpg', image)
+        
+        
+     if __name__ == "__main__":
+        image_path = 'path_to_your_image.jpg'
+        detect_and_process_image(image_path)
 
      cv2.waitKey(32)
      cv2.imshow("frame",frame) 
