@@ -51,9 +51,6 @@ while True:
         
         if class_name == 'person':
             speak('We warmly welcome you')
-
-        if class_name == 'dog':
-            speak('your are not alow')
             
             # Save image of detected object
             object_img = frame[y:y+h, x:x+w]
