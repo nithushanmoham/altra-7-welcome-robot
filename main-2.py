@@ -1,7 +1,6 @@
 import cv2
 import pyttsx3
 import datetime
-import wolframalpha
 import os
 
 # Initialize the text-to-speech engine
@@ -46,16 +45,15 @@ while True:
         cv2.putText(frame, class_name, (x, y - 10), cv2.FONT_HERSHEY_PLAIN, 3, (200, 0, 50), 2)
         cv2.rectangle(frame, (x, y), (x + w, y + h), (200, 0, 50), 3)
         
-    if class_name == 'person':
-        speak('please welcome')
-    
-    # Save the image when a person is detected
-    file_path = "datas"
-    image_filename = f"detected_person_{str(datetime.datetime.now())}.jpg"
-    image_path = os.path.join(file_path, image_filename)
-    cv2.imwrite(image_path, frame)
-    print(f"Image saved as {image_path}")
-
+        if class_name == 'person':
+            speak('please welcome')
+            
+            # Save the image when a person is detected
+            file_path = "datas"
+            image_filename = f"detected_person_{str(datetime.datetime.now())}.jpg"
+            image_path = os.path.join(file_path, image_filename)
+            cv2.imwrite(image_path, frame)
+            print(f"Image saved as {image_path}")
 
     cv2.imshow("frame", frame)
     

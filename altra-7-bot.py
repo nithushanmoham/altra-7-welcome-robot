@@ -64,12 +64,6 @@ while True:
      if class_name == 'person':
         speak('please welcome')
         
-        cv2.imwrite('detected_person.jpg', image)
-        
-        
-     if __name__ == "__main__":
-        image_path = 'path_to_your_image.jpg'
-        detect_and_process_image(image_path)
 
      cv2.waitKey(32)
      cv2.imshow("frame",frame) 
