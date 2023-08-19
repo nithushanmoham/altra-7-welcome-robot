@@ -47,8 +47,6 @@ while True:
         
         if class_name == 'person':
             speak('please welcome')
-            
-            # Save the image when a person is detected
             file_path = "datas"
             image_filename = f"detected_person_{str(datetime.datetime.now())}.jpg"
             image_path = os.path.join(file_path, image_filename)
