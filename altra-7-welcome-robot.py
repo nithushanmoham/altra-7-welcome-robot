@@ -8,12 +8,13 @@ import os
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[0].id)
+engine.setProperty('voice', voices[1].id)
 
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
+# Time Managing
 def greetMe ():
     currentH = int(datetime.datetime.now().hour)
     if currentH >= 10 and currentH < 3:
@@ -66,12 +67,12 @@ while True:
 
         cv2.putText(frame, class_name, (x, y - 10), cv2.FONT_HERSHEY_PLAIN, 3, (200, 0, 50), 2)
         cv2.rectangle(frame, (x, y), (x + w, y + h), (200, 0, 50), 3)
+
         
         if class_name == 'person':
             greetMe ()
-            playsound.playsound('Audios/english.mp3','Audios/tamil.mp3')
-
-
+            speak('We warmly welcome you')
+            playsound.playsound('C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil.mp3')
             
             # Save image of detected object
             object_img = frame[y:y+h, x:x+w]
@@ -80,7 +81,7 @@ while True:
             object_filename = f"{label}_{now.strftime('%Y-%m-%d_%H-%M-%S')}.jpg"
             cv2.imwrite(os.path.join("data-details", object_filename), object_img)
 
-            print(f"Image saved as {object_filename}")         
+            print(f"Image saved as {object_filename}")      
         
         cv2.imshow("Object Detection", frame)
 
