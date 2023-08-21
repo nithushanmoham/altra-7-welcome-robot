@@ -32,9 +32,9 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
-# Create the "detected_objects" folder if it doesn't exist
-if not os.path.exists("detected_objects"):
-    os.makedirs("detected_objects")
+# Create the "data-details" folder if it doesn't exist
+if not os.path.exists("data-details"):
+    os.makedirs("data-details")
 
 val = 3  # or any other appropriate value
 
@@ -60,9 +60,10 @@ if val >= 2:
                 label = class_name.lower()  # Convert class name to lowercase for filename
                 now = datetime.datetime.now()
                 object_filename = f"{label}_{now.strftime('%Y-%m-%d_%H-%M-%S')}.jpg"
-                cv2.imwrite(os.path.join("Data-details", object_filename), object_img)
+                cv2.imwrite(os.path.join("data-details", object_filename), object_img)
                 val = 0
                 print(f"Image saved as {object_filename}")
+                
             
             cv2.imshow("Object Detection", frame)
     
