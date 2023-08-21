@@ -1,5 +1,6 @@
 import cv2
 import pyttsx3
+import playsound
 import speech_recognition as sr
 import datetime
 import os
@@ -68,7 +69,9 @@ while True:
         
         if class_name == 'person':
             greetMe ()
-            speak('You are welcome to come in')
+            playsound.playsound('Audios/english.mp3','Audios/tamil.mp3')
+
+
             
             # Save image of detected object
             object_img = frame[y:y+h, x:x+w]
