@@ -1,10 +1,14 @@
 import cv2
+import pygame
 import pyttsx3
 import playsound
 import speech_recognition as sr
 import datetime
 import random
 import os
+
+# Initialize pygame
+pygame.mixer.init()
 
 # List of random phrases
 phrases = [
@@ -15,24 +19,21 @@ phrases = [
     "You are warmly welcomed!",
     "you are warmly welcome!"
 ]
-
 # Select a random phrase
 random_phrase = random.choice(phrases)
 
 # List of random audios
 audio_files = [
-    "audios/tamil-1",
-    "audios/tamil-2",
-    "audios/tamil-3",
-    "audios/tamil-4"
+    "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil-1.mp3",
+    "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil-2.mp3",
+    "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil-3.mp3",
+    "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil-4.mp3"
 ]
-
 # Select a random audio file
 random_audio = random.choice(audio_files)
 
-# Play the random audio file
+# Load the selected audio file
 playsound.playsound(random_audio)
-
 
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
