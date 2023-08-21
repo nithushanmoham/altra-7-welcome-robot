@@ -19,6 +19,21 @@ phrases = [
 # Select a random phrase
 random_phrase = random.choice(phrases)
 
+# List of random audios
+audio_files = [
+    "audios/tamil-1",
+    "audios/tamil-2",
+    "audios/tamil-3",
+    "audios/tamil-4"
+]
+
+# Select a random audio file
+random_audio = random.choice(audio_files)
+
+# Play the random audio file
+playsound.playsound(random_audio)
+
+
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -86,7 +101,7 @@ while True:
         if class_name == 'person':
             greetMe ()
             speak('phrases')
-            playsound.playsound('C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil.mp3')
+            playsound.playsound('audio_files')
             
             # Save image of detected object
             object_img = frame[y:y+h, x:x+w]
