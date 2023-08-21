@@ -6,9 +6,6 @@ import datetime
 import random
 import os
 
-# Initialize pygame
-pygame.mixer.init()
-
 # List of random phrases
 phrases = [
     "Please come in!",
@@ -39,7 +36,7 @@ def greetMe ():
     elif currentH >= 3 and currentH < 15:
         speak('Hi,Good Afternoon!')
 
-    elif currentH >= 15 and currentH !=19:
+    elif currentH >= 15 and currentH < 19:
         speak('Hi,Good Evening!') 
 
     elif currentH >= 19 and currentH !=10:
@@ -88,7 +85,7 @@ while True:
         if class_name == 'person':
             greetMe ()
             speak('phrases')
-            playsound.playsound('audio_files')
+            playsound.playsound('C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil-4.mp3')
             
             # Save image of detected object
             object_img = frame[y:y+h, x:x+w]
