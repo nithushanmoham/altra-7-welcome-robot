@@ -22,19 +22,6 @@ phrases = [
 # Select a random phrase
 random_phrase = random.choice(phrases)
 
-# List of random audios
-audio_files = [
-    "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil-1.mp3",
-    "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil-2.mp3",
-    "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil-3.mp3",
-    "C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil-4.mp3"
-]
-# Select a random audio file
-random_audio = random.choice(audio_files)
-
-# Load the selected audio file
-playsound.playsound(random_audio)
-
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
