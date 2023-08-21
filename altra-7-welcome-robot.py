@@ -1,5 +1,4 @@
 import cv2
-import pygame
 import pyttsx3
 import playsound
 import speech_recognition as sr
