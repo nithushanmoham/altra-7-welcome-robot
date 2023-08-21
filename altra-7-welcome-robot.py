@@ -11,7 +11,7 @@ engine.setProperty('voice', voices[0].id)
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
-    
+
 # Initialize OpenCV DNN for object detection
 net = cv2.dnn.readNet("models/yolov4-tiny.weights", "models/yolov4-tiny.cfg")
 model = cv2.dnn_DetectionModel(net)
@@ -35,7 +35,7 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 # Create the "data-details" folder if it doesn't exist
 if not os.path.exists("data-details"):
     os.makedirs("data-details")
-    
+
 while True:
     ret, frame = cap.read(1)
 
@@ -50,6 +50,7 @@ while True:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (200, 0, 50), 3)
         
         if class_name == 'person':
+            print("Detected a person")
             speak('Today is a good day,You are welcome to come in')
             
             # Save image of detected object
@@ -59,8 +60,7 @@ while True:
             object_filename = f"{label}_{now.strftime('%Y-%m-%d_%H-%M-%S')}.jpg"
             cv2.imwrite(os.path.join("data-details", object_filename), object_img)
 
-            print(f"Image saved as {object_filename}")
-            
+            print(f"Image saved as {object_filename}")         
         
         cv2.imshow("Object Detection", frame)
 
