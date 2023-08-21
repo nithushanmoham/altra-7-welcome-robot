@@ -3,7 +3,21 @@ import pyttsx3
 import playsound
 import speech_recognition as sr
 import datetime
+import random
 import os
+
+# List of random phrases
+phrases = [
+    "Please come in!",
+    "Hello welcome to this evant!",
+    "We welcome you!",
+    "We warmly welcome you!",
+    "You are warmly welcomed!",
+    "you are warmly welcome!"
+]
+
+# Select a random phrase
+random_phrase = random.choice(phrases)
 
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
@@ -11,7 +25,7 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
 def speak(audio):
-    engine.say(audio)
+    engine.say(random_phrase)
     engine.runAndWait()
 
 # Time Managing
@@ -71,7 +85,7 @@ while True:
         
         if class_name == 'person':
             greetMe ()
-            speak('We warmly welcome you')
+            speak('phrases')
             playsound.playsound('C:/Users/Nithushan/OneDrive/Desktop/altra-7-welcome-robot/Audios/tamil.mp3')
             
             # Save image of detected object
