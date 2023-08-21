@@ -1,5 +1,6 @@
 import cv2
 import pyttsx3
+import speech_recognition as sr
 import datetime
 import os
 
@@ -11,7 +12,22 @@ engine.setProperty('voice', voices[0].id)
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
-    time.sleep(1)
+
+def greetMe ():
+    currentH = int(datetime.datetime.now().hour)
+    if currentH >= 10 and currentH < 3:
+        speak('Hi,Good Morning! Iam a Altra7 welcome robot. The time is',currentH)
+
+    elif currentH >= 3 and currentH < 15:
+        speak('Hi,Good Afternoon!')
+
+    elif currentH >= 15 and currentH !=19:
+        speak('Hi,Good Evening!') 
+
+    elif currentH >= 19 and currentH !=10:
+        speak('Good Night! It is night')
+    else:
+        print("finish")    
 
 # Initialize OpenCV DNN for object detection
 net = cv2.dnn.readNet("models/yolov4-tiny.weights", "models/yolov4-tiny.cfg")
@@ -51,7 +67,8 @@ while True:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (200, 0, 50), 3)
         
         if class_name == 'person':
-            speak('Today is a good day,You are welcome to come in')
+            greetMe ()
+            speak('You are welcome to come in')
             
             # Save image of detected object
             object_img = frame[y:y+h, x:x+w]
