@@ -11,6 +11,7 @@ engine.setProperty('voice', voices[0].id)
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
+    time.sleep(1)
 
 # Initialize OpenCV DNN for object detection
 net = cv2.dnn.readNet("models/yolov4-tiny.weights", "models/yolov4-tiny.cfg")
@@ -50,7 +51,6 @@ while True:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (200, 0, 50), 3)
         
         if class_name == 'person':
-            print("Detected a person")
             speak('Today is a good day,You are welcome to come in')
             
             # Save image of detected object
